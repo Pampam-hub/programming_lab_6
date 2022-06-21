@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+group = "ru.itmo.lab"
+
+repositories {
+    mavenCentral()
+}
