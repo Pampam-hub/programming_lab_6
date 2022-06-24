@@ -1,4 +1,4 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
@@ -11,7 +11,7 @@ import ru.itmo.lab.request.Request;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintFieldDescendingAgeCommand extends Command {
+public class PrintFieldDescendingAgeCommand extends ClientCommand {
     public PrintFieldDescendingAgeCommand() {
         super("print_field_descending_age","you can see values of field " +
                 "age in descending order","arguments aren't needed");

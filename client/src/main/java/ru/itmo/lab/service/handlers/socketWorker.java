@@ -12,7 +12,7 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-public class ClientSocketWorker {
+public class socketWorker {
     private static final int DEFAULT_PORT = 1425;
     private final DatagramChannel datagramChannel;
     private SocketAddress socketAddress;
@@ -21,7 +21,7 @@ public class ClientSocketWorker {
 
     private String address = "localhost";
 
-    public ClientSocketWorker() throws IOException {
+    public socketWorker() throws IOException {
         host = InetAddress.getByName(address);
         socketAddress = new InetSocketAddress(host, port);
         datagramChannel = DatagramChannel.open();

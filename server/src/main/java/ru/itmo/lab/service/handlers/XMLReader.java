@@ -33,7 +33,7 @@ public class XMLReader {
         Dragon[] dragons = null;
         try {
             dragons = (Dragon[]) xStream.fromXML(dataXML.toString());
-            idHelper = FileChecker.fileIsCorrect(dragons);
+            idHelper = XMLFileChecker.fileIsCorrect(dragons);
             storage.setIdCounter(idHelper);
         } catch (ConversionException e) {
             OutputMessage.printErrorMessage("\nCan't parse file, data is incorrect");

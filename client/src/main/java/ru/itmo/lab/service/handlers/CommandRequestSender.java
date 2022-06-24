@@ -1,13 +1,13 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
 import ru.itmo.lab.request.Request;
 
 import java.io.IOException;
 
 public class CommandRequestSender {
-    public static void sendCommandRequest(Request request, ClientSocketWorker clientSocketWorker)
+    public static void sendCommandRequest(Request request, socketWorker socketWorker)
             throws IOException {
-        request.setClientInfo(clientSocketWorker.getAddress() + clientSocketWorker.getPort());
-        clientSocketWorker.sendRequest(request);
+        request.setClientInfo(socketWorker.getAddress() + socketWorker.getPort());
+        socketWorker.sendRequest(request);
     }
 }

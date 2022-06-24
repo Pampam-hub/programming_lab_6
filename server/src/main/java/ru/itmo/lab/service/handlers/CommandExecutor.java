@@ -1,50 +1,67 @@
 package ru.itmo.lab.service.handlers;
 
 import ru.itmo.lab.repository.Storage;
+import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.exceptions.EntityNotFoundException;
+import ru.itmo.lab.request.Request;
 import ru.itmo.lab.service.OutputMessage;
-import ru.itmo.lab.service.commands.Command;
-import ru.itmo.lab.service.commandresult.CommandResult;
+import ru.itmo.lab.service.commands.clientcommands.ClientCommand;
+import ru.itmo.lab.service.commands.servercommands.ServerCommand;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class CommandExecutor {
-    public static Map<String, Command> AVAILABLE_COMMANDS = new LinkedHashMap<>();
+    public static Map<String, ClientCommand> CLIENT_AVAILABLE_COMMANDS = new LinkedHashMap<>();
+    public static Map<String, ServerCommand> SERVER_AVAILABLE_COMMANDS = new LinkedHashMap<String, ServerCommand>();
 
-    CommandExecutor(Command helpCommand, Command infoCommand,
-                    Command showCommand, Command insertCommand,
-                    Command updateCommand, Command removeKeyCommand,
-                    Command clearCommand, Command saveCommand,
-                    Command executeScriptCommand, Command exitCommand,
-                    Command removeLowerCommand, Command historyCommand,
-                    Command removeLowerKeyCommand, Command minByAgeCommand,
-                    Command filterGreaterThanTypeCommand,
-                    Command printFieldDescendingAgeCommand) {
+    public CommandExecutor(ClientCommand helpCommand, ClientCommand infoCommand,
+                           ClientCommand showCommand, ClientCommand insertCommand,
+                           ClientCommand updateCommand, ClientCommand removeKeyCommand,
+                           ClientCommand clearCommand, ClientCommand exitCommand,
+                           ClientCommand removeLowerCommand, ClientCommand historyCommand,
+                           ClientCommand removeLowerKeyCommand, ClientCommand minByAgeCommand,
+                           ClientCommand filterGreaterThanTypeCommand,
+                           ClientCommand printFieldDescendingAgeCommand,
+                           ServerCommand helpCommandServer, ServerCommand saveCommand,
+                           ServerCommand exitCommandServer) {
 
-        AVAILABLE_COMMANDS.put(helpCommand.getName(), helpCommand);
-        AVAILABLE_COMMANDS.put(infoCommand.getName(), infoCommand);
-        AVAILABLE_COMMANDS.put(showCommand.getName(), showCommand);
-        AVAILABLE_COMMANDS.put(insertCommand.getName(), insertCommand);
-        AVAILABLE_COMMANDS.put(updateCommand.getName(), updateCommand);
-        AVAILABLE_COMMANDS.put(removeKeyCommand.getName(), removeKeyCommand);
-        AVAILABLE_COMMANDS.put(clearCommand.getName(), clearCommand);
-        AVAILABLE_COMMANDS.put(saveCommand.getName(), saveCommand);
-        AVAILABLE_COMMANDS.put(executeScriptCommand.getName(),
-                executeScriptCommand);
-        AVAILABLE_COMMANDS.put(exitCommand.getName(), exitCommand);
-        AVAILABLE_COMMANDS.put(removeLowerCommand.getName(),
+        CLIENT_AVAILABLE_COMMANDS.put(helpCommand.getName(), helpCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(infoCommand.getName(), infoCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(showCommand.getName(), showCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(insertCommand.getName(), insertCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(updateCommand.getName(), updateCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(removeKeyCommand.getName(), removeKeyCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(clearCommand.getName(), clearCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(exitCommand.getName(), exitCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(removeLowerCommand.getName(),
                 removeLowerCommand);
-        AVAILABLE_COMMANDS.put(historyCommand.getName(), historyCommand);
-        AVAILABLE_COMMANDS.put(removeLowerKeyCommand.getName(),
+        CLIENT_AVAILABLE_COMMANDS.put(historyCommand.getName(), historyCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(removeLowerKeyCommand.getName(),
                 removeLowerKeyCommand);
-        AVAILABLE_COMMANDS.put(minByAgeCommand.getName(), minByAgeCommand);
-        AVAILABLE_COMMANDS.put(filterGreaterThanTypeCommand.getName(),
+        CLIENT_AVAILABLE_COMMANDS.put(minByAgeCommand.getName(), minByAgeCommand);
+        CLIENT_AVAILABLE_COMMANDS.put(filterGreaterThanTypeCommand.getName(),
                 filterGreaterThanTypeCommand);
-        AVAILABLE_COMMANDS.put(printFieldDescendingAgeCommand.getName(),
+        CLIENT_AVAILABLE_COMMANDS.put(printFieldDescendingAgeCommand.getName(),
                 printFieldDescendingAgeCommand);
+
+        SERVER_AVAILABLE_COMMANDS.put(helpCommandServer.getName(), helpCommandServer);
+        SERVER_AVAILABLE_COMMANDS.put(saveCommand.getName(), saveCommand);
+        SERVER_AVAILABLE_COMMANDS.put(exitCommandServer.getName(), exitCommandServer);
     }
 
-    public CommandResult executeCommand(Storage storage, String string) {
+    public CommandResult executeClientCommand(Storage storage, Request request) {
+        CommandResult commandResult;
+
+        ClientCommand command = CLIENT_AVAILABLE_COMMANDS.get(request.getCommandName());
+        storage.fillHistory(command);
+        commandResult = command.execute(storage, request);
+
+        return commandResult;
+    }
+
+    public CommandResult executeServerCommand(Storage storage, String string) {
         CommandResult commandResult = null;
 
         string = string.trim();
@@ -52,21 +69,14 @@ public class CommandExecutor {
         String commandName = splintedString[0].toLowerCase();
         String[] commandsArgs = Arrays.copyOfRange(splintedString, 1, splintedString.length);
 
-        if(AVAILABLE_COMMANDS.containsKey(commandName)) {
-            try {
-                Command command = AVAILABLE_COMMANDS.get(commandName);
-                storage.fillHistory(command);
-                commandResult = command.execute(storage, commandsArgs);
-                commandResult.showCommandResult();
-            } catch (EntityNotFoundException e) {
-                System.out.println(e.getMessage());
-                System.exit(0);
-            }
+        if(SERVER_AVAILABLE_COMMANDS.containsKey(commandName)) {
+            ServerCommand command = SERVER_AVAILABLE_COMMANDS.get(commandName);
+            commandResult = command.execute(storage, commandsArgs);
+            commandResult.showCommandResult();
         } else {
             OutputMessage.printErrorMessage("\nThere is no such command, for reference, enter command \"help\" ");
         }
 
         return commandResult;
     }
-
 }

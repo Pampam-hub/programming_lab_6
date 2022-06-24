@@ -1,4 +1,4 @@
-package ru.itmo.lab;
+package ru.itmo.lab.repository;
 
 import java.util.Scanner;
 

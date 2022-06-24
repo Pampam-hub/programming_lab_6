@@ -1,15 +1,13 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
-import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.repository.Storage;
 import ru.itmo.lab.repository.commandresult.CommandStatus;
 import ru.itmo.lab.request.Request;
-import ru.itmo.lab.service.handlers.DragonValidator;
 
 
-public class ShowCommand extends Command {
+public class ShowCommand extends ClientCommand {
     public ShowCommand() {
         super("show","you can see elements of the collection",
                 "arguments aren't needed");

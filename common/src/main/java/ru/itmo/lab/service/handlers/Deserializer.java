@@ -1,6 +1,6 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
-import ru.itmo.lab.commandresult.CommandResult;
+import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.request.Request;
 
 import java.io.ByteArrayInputStream;

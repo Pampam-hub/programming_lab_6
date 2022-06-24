@@ -1,6 +1,6 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
-import ru.itmo.lab.CommandToSend;
+import ru.itmo.lab.service.CommandToSend;
 
 import java.util.Arrays;
 

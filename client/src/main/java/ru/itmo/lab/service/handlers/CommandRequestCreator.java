@@ -1,7 +1,7 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
-import ru.itmo.lab.CommandToSend;
-import ru.itmo.lab.OutputMessage;
+import ru.itmo.lab.service.CommandToSend;
+import ru.itmo.lab.service.OutputMessage;
 import ru.itmo.lab.request.*;
 
 import java.util.Map;
@@ -18,7 +18,6 @@ public class CommandRequestCreator {
         AVAILABLE_COMMANDS.put("update", new WithIdAndDragonCommandRequest());
         AVAILABLE_COMMANDS.put("remove_key", new WithIdCommandRequest());
         AVAILABLE_COMMANDS.put("clear", new WithoutArgsCommandRequest());
-        AVAILABLE_COMMANDS.put("execute_script", "А вот тут не ясно шо делать");
         AVAILABLE_COMMANDS.put("exit", new WithoutArgsCommandRequest());
         AVAILABLE_COMMANDS.put("remove_lower", new WithDragonCommandRequest());
         AVAILABLE_COMMANDS.put("history", new WithoutArgsCommandRequest());
@@ -27,8 +26,8 @@ public class CommandRequestCreator {
         AVAILABLE_COMMANDS.put("filter_grater_than_type", new WithTypeCommandRequest());
         AVAILABLE_COMMANDS.put("print_field_descending_age", new WithoutArgsCommandRequest());
     }
-    public Request createCommandRequest(String line) {
-        CommandToSend commandToSend = CommandToSendCreator.createCommandToSend(line);
+
+    public Request createCommandRequest(String line, CommandToSend commandToSend) {
 
         Request request = null;
         if (AVAILABLE_COMMANDS.containsKey(commandToSend.getCommandName())) {

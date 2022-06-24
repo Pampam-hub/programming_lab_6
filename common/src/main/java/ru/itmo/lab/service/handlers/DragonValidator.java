@@ -1,4 +1,4 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
 
 import java.util.NoSuchElementException;

@@ -12,7 +12,7 @@ dependencies {
 
 tasks.jar {
     manifest {
-   //     attributes["Main-Class"] = "ru.itmo.lab.Client"
+        attributes['Main-Class'] = 'ru.itmo.lab.Client'
     }
 
     configurations["runtimeClasspath"].forEach {file ->

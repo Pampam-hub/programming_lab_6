@@ -1,4 +1,4 @@
-package ru.itmo.lab;
+package ru.itmo.lab.service;
 
 public class OutputMessage {
     public static void printErrorMessage(String message) {

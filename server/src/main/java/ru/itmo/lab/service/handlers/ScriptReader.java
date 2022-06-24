@@ -1,7 +1,7 @@
 package ru.itmo.lab.service.handlers;
 
+import ru.itmo.lab.repository.ConsoleWorker;
 import ru.itmo.lab.repository.Storage;
-import ru.itmo.lab.service.commands.*;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -16,9 +16,9 @@ public class ScriptReader {
         }
         storage.addPreviousFiles(file);
         Scanner scanner = new Scanner(new BufferedInputStream(new FileInputStream(file)));
-        Command.setScanner(scanner);
+        ConsoleWorker.getConsoleWorker().setScanner(scanner);
         CommandExecutor commandExecutor = ConsoleReader.getCommandExecutor();
-        while(scanner.hasNext() & Command.isExecutedScript()) {
+        while(scanner.hasNext() & ConsoleWorker.getConsoleWorker().isExecutedScript()) {
             String line = scanner.nextLine();
             commandExecutor.executeCommand(storage, line);
         }

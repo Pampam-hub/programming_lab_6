@@ -3,7 +3,7 @@ package ru.itmo.lab.repository;
 import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.repository.exceptions.EntityAlreadyExistsException;
 import ru.itmo.lab.repository.exceptions.EntityNotFoundException;
-import ru.itmo.lab.service.commands.Command;
+import ru.itmo.lab.service.commands.clientcommands.ClientCommand;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -124,7 +124,7 @@ public class DragonTreeMapStorage implements Storage<Dragon, Integer> {
     }
 
     @Override
-    public void fillHistory(Command command) {
+    public void fillHistory(ClientCommand command) {
         int numElements = 12;
         if (history.size() == numElements) {
             history.removeFirst();

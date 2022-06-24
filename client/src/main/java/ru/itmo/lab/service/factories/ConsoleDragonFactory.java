@@ -1,10 +1,10 @@
-package ru.itmo.lab.service;
+package ru.itmo.lab.service.factories;
 
-import ru.itmo.lab.handlers.DragonValidator;
-import ru.itmo.lab.Factory;
-import ru.itmo.lab.OutputMessage;
+import ru.itmo.lab.service.handlers.DragonValidator;
+import ru.itmo.lab.repository.Factory;
+import ru.itmo.lab.service.OutputMessage;
 import ru.itmo.lab.entity.*;
-import ru.itmo.lab.ConsoleWorker;
+import ru.itmo.lab.repository.ConsoleWorker;
 
 import java.util.Scanner;
 

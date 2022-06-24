@@ -1,4 +1,4 @@
-package ru.itmo.lab.commandresult;
+package ru.itmo.lab.repository.commandresult;
 
 import ru.itmo.lab.entity.Dragon;
 
