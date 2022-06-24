@@ -1,0 +1,32 @@
+package ru.itmo.lab.service.clientcommands;
+
+import ru.itmo.lab.repository.commandresult.CommandResult;
+import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
+import ru.itmo.lab.entity.Dragon;
+import ru.itmo.lab.repository.Storage;
+import ru.itmo.lab.repository.comparators.AgeDragonComparator;
+import ru.itmo.lab.repository.commandresult.CommandStatus;
+import ru.itmo.lab.request.Request;
+
+public class MinByAgeCommand extends Command {
+    public MinByAgeCommand() {
+        super("min_by_age","you can see element with the smallest age",
+                "arguments aren't needed");
+    }
+
+    @Override
+    public CommandResult execute(Storage storage, Request request) {
+        try {
+            Dragon minDragon = (Dragon) storage.min(new AgeDragonComparator());
+
+            return new CommandResultBuilder()
+                    .setMessage("Here element with the smallest age")
+                    .setStatus(CommandStatus.SUCCESSFUL)
+                    .setDragon(minDragon).build();
+        } catch (IllegalArgumentException e) {
+            return new CommandResultBuilder()
+                    .setMessage(e.getMessage())
+                    .setStatus(CommandStatus.UNSUCCESSFUL).build();
+        }
+    }
+}
