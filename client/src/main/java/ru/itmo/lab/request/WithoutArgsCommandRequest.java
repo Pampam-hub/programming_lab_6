@@ -1,7 +1,7 @@
 package ru.itmo.lab.request;
 
-import ru.itmo.lab.CommandToSend;
-import ru.itmo.lab.DragonValidator;
+import ru.itmo.lab.service.CommandToSend;
+import ru.itmo.lab.service.handlers.DragonValidator;
 
 public class WithoutArgsCommandRequest implements CommandRequest {
     public WithoutArgsCommandRequest() {
@@ -10,6 +10,9 @@ public class WithoutArgsCommandRequest implements CommandRequest {
     @Override
     public Request createRequest(CommandToSend commandToSend) {
         DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 0);
-        return new RequestBuilder().withName(commandToSend.getCommandName()).build();
+
+        return new RequestBuilder()
+                .withName(commandToSend.getCommandName())
+                .build();
     }
 }

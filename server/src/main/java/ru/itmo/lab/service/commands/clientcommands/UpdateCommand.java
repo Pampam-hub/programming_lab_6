@@ -1,15 +1,13 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
-import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.repository.Storage;
 import ru.itmo.lab.repository.exceptions.EntityNotFoundException;
 import ru.itmo.lab.repository.commandresult.CommandStatus;
 import ru.itmo.lab.request.Request;
-import ru.itmo.lab.service.handlers.DragonValidator;
 
-public class UpdateCommand extends Command {
+public class UpdateCommand extends ClientCommand {
     public UpdateCommand() {
         super("update","update element from collection",
                 "id");

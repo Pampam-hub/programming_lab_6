@@ -17,7 +17,7 @@ public class Dragon {
     private Coordinates coordinates;
     // Поле не может быть null, значение генерируется автоматически
     @XStreamAlias("creationDate")
-    private java.time.LocalDateTime creationDate;
+    private LocalDateTime creationDate;
     // Значение поля > 0, поле не может быть null
     @XStreamAlias("age")
     private Integer age;

@@ -1,4 +1,4 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
@@ -8,7 +8,7 @@ import ru.itmo.lab.repository.commandresult.CommandStatus;
 import ru.itmo.lab.request.Request;
 
 
-public class RemoveKeyCommand extends Command {
+public class RemoveKeyCommand extends ClientCommand {
     public RemoveKeyCommand() {
         super("remove_key","remove element from " +
                 "collection by key", "id");

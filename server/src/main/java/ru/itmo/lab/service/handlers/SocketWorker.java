@@ -7,7 +7,7 @@ import ru.itmo.lab.request.Request;
 import java.io.IOException;
 import java.net.*;
 
-public class ServerSocketWorker {
+public class SocketWorker {
     private static final int DEFAULT_PORT = 1425;
     private DatagramSocket datagramSocket;
     private int port = DEFAULT_PORT;
@@ -16,7 +16,7 @@ public class ServerSocketWorker {
 
     private String address = "localhost";
 
-    public ServerSocketWorker() {
+    public SocketWorker() {
         try {
             host = InetAddress.getByName(address);
             datagramSocket = new DatagramSocket(port, host);

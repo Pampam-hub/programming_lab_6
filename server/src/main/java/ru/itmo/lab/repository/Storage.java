@@ -3,7 +3,7 @@ package ru.itmo.lab.repository;
 import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.repository.exceptions.EntityAlreadyExistsException;
 import ru.itmo.lab.repository.exceptions.EntityNotFoundException;
-import ru.itmo.lab.service.commands.Command;
+import ru.itmo.lab.service.commands.clientcommands.ClientCommand;
 
 import java.util.Comparator;
 import java.util.Deque;
@@ -24,7 +24,7 @@ public interface Storage<T, U> {
     List<T> readAll();
     T min(Comparator< Dragon> com);
     List<T> sortDragons(Comparator<Dragon> com);
-    void fillHistory(Command command);
+    void fillHistory(ClientCommand command);
     void addPreviousFiles(String file);
     void deleteFromPreviousFiles(String file);
     Deque<String> getHistory();

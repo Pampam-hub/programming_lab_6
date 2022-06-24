@@ -1,4 +1,4 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
@@ -9,9 +9,9 @@ import ru.itmo.lab.service.handlers.XMLWriter;
 
 import java.io.IOException;
 
-public class ExitCommand extends Command {
+public class ExitCommand extends ClientCommand {
     public ExitCommand() {
-        super("exit", "exit the program without " +
+        super("exit", "exit the program with " +
                 "saving", "arguments aren't needed");
     }
 

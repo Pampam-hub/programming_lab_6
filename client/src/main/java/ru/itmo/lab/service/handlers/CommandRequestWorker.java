@@ -1,18 +1,30 @@
-package ru.itmo.lab.handlers;
+package ru.itmo.lab.service.handlers;
 
+import ru.itmo.lab.service.OutputMessage;
 import ru.itmo.lab.request.Request;
+import ru.itmo.lab.service.CommandToSend;
 
 import java.io.IOException;
 
 public class CommandRequestWorker {
-    public static void superpupermethod(String line, ClientSocketWorker clientSocketWorker) throws IOException {
-        CommandRequestCreator requestCreator = new CommandRequestCreator();
-        Request request = requestCreator.createCommandRequest(line);
+    private final static CommandRequestCreator requestCreator = new CommandRequestCreator();
 
-        if(request != null) {
-            CommandRequestSender.sendCommandRequest(request, clientSocketWorker);
+    public static void superpupermethod(String line, socketWorker socketWorker) throws IOException {
+        CommandToSend commandToSend = CommandToSendCreator.createCommandToSend(line);
+        try {
+            if ("execute_script".equals(commandToSend.getCommandName())) {
+                ScriptWorker.startWorkWithScript(commandToSend, socketWorker);
+            } else {
+                Request request = requestCreator.createCommandRequest(line, commandToSend);
 
-            CommandRequestReceiver.receiveCommandRequest(clientSocketWorker);
+                if (request != null) {
+                    CommandRequestSender.sendCommandRequest(request, socketWorker);
+
+                    CommandRequestReceiver.receiveCommandRequest(socketWorker);
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            OutputMessage.printErrorMessage(e.getMessage());
         }
     }
 }

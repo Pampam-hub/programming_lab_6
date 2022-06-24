@@ -1,7 +1,7 @@
-package ru.itmo.lab;
+package ru.itmo.lab.service.handlers;
 
-import ru.itmo.lab.commandresult.CommandResult;
-import ru.itmo.lab.service.handlers.ClientSocketWorker;
+import ru.itmo.lab.repository.commandresult.CommandResult;
+import ru.itmo.lab.service.OutputMessage;
 
 import java.io.IOException;
 
@@ -9,12 +9,13 @@ public final class ResultReceiver {
     private ResultReceiver() {
     }
 
-    public static void receiveResult (ClientSocketWorker clientSocketWorker) {
+    public static void receiveResult (socketWorker socketWorker) {
         try {
             CommandResult commandResult = null;
             for (int i = 0; i < 50 && commandResult == null; i++) {
                 OutputMessage.printSuccessfulMessage("Waiting for response from server...");
-                commandResult = clientSocketWorker.receiveResult();
+                Thread.sleep(100);
+                commandResult = socketWorker.receiveResult();
             }
             if (commandResult == null) {
                 OutputMessage.printErrorMessage("I'm tired!");
@@ -22,10 +23,11 @@ public final class ResultReceiver {
             }
             commandResult.showCommandResult();
         } catch (IOException e) {
-            System.out.println(("error while "));
-            e.printStackTrace();
+            OutputMessage.printErrorMessage("Occurred while receiving response from server ");
         } catch (ClassNotFoundException e) {
-            System.out.println(("Пришел некорректный ответ от сервера"));
+            OutputMessage.printErrorMessage("Incorrect response from server");
+        } catch (InterruptedException e) {
+            OutputMessage.printErrorMessage("Interruption request during tread sleeping");
         }
     }
 }

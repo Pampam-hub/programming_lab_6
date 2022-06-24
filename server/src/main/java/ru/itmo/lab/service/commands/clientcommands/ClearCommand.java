@@ -1,4 +1,4 @@
-package ru.itmo.lab.service.clientcommands;
+package ru.itmo.lab.service.commands.clientcommands;
 
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.repository.commandresult.CommandResultBuilder;
@@ -7,7 +7,7 @@ import ru.itmo.lab.repository.Storage;
 import ru.itmo.lab.request.Request;
 
 
-public class ClearCommand extends Command {
+public class ClearCommand extends ClientCommand {
     public ClearCommand() {
         super("clear","clear all collection",
                 "arguments aren't needed");

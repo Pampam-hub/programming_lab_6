@@ -11,14 +11,14 @@ import ru.itmo.lab.service.handlers.XMLWriter;
 import java.io.IOException;
 
 
-public class SaveCommand extends ClientCommand {
-    public SaveCommand() {
+public class SaveServerCommand extends ServerCommand {
+    public SaveServerCommand() {
         super("save", "save collection into file",
                 "arguments aren't needed");
     }
 
     @Override
-    public CommandResult execute(Storage storage, String[] args, Dragon dragon)  {
+    public CommandResult execute(Storage storage, String[] args)  {
         try {
             XMLWriter.writeToXML(storage.readAll());
             return new CommandResultBuilder()

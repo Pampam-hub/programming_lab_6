@@ -1,6 +1,9 @@
 package ru.itmo.lab.repository.factories;
 
-import ru.itmo.lab.entity.*;
+import ru.itmo.lab.repository.Factory;
+import ru.itmo.lab.entity.Dragon;
+import ru.itmo.lab.entity.DragonCharacter;
+import ru.itmo.lab.entity.DragonType;
 import ru.itmo.lab.service.handlers.DragonValidator;
 
 import java.time.LocalDateTime;
@@ -57,8 +60,8 @@ public class FileDragonFactory implements Factory {
     }
 
     void checkDate() throws IllegalArgumentException {
-        java.time.LocalDateTime dateTime = dragon.getCreationDate();
-        DragonValidator<java.time.LocalDateTime> dragonValidator =
+        LocalDateTime dateTime = dragon.getCreationDate();
+        DragonValidator<LocalDateTime> dragonValidator =
                 new DragonValidator<>(dateTime);
         dragonValidator.validateValueNull(false, "date");
         if(dateTime.compareTo(LocalDateTime.now()) > 0) {
