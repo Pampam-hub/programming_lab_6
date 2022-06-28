@@ -15,7 +15,7 @@ public class ScriptWorker {
     }
 
     public static void startWorkWithScript(CommandToSend commandToSend,
-                                           socketWorker socketWorker) {
+                                           SocketWorker socketWorker) {
         try {
             DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 0);
             String file = commandToSend.getCommandArgs()[0];

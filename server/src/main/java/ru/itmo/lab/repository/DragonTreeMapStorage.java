@@ -154,10 +154,8 @@ public class DragonTreeMapStorage implements Storage<Dragon, Integer> {
 
     @Override
     public String getInfo() {
-        final int sizeOfDragon = 25;
-        final int sizeOfDragons = 16;
-        return "Collection type: " + dragonTreeMap.getClass().toString().substring(sizeOfDragons) +
-                ", elements type: " + Dragon.class.toString().substring(sizeOfDragon) + ", data of " +
+        return "Collection type: " + dragonTreeMap.getClass().getSimpleName() +
+                ", elements type: " + Dragon.class.getSimpleName() + ", data of " +
                 "initialisation: " + dateOfInitialization + ", number of elements: " +
                 dragonTreeMap.size();
     }

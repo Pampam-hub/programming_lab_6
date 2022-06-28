@@ -87,7 +87,7 @@ public class ConsoleDragonFactory implements Factory {
         dragonValidator.validateFunction(Integer::parseInt,
                 "value of wingspan must be an integer ");
         dragonValidator.validatePredicate(arg -> (int) arg > 0,
-                "value of age must be a positive");
+                "value of wingspan must be a positive");
         dragon.setWingspan(dragonValidator.getValue());
     }
 

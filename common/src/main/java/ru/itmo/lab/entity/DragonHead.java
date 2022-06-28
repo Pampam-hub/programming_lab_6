@@ -2,8 +2,10 @@ package ru.itmo.lab.entity;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
+
 @XStreamAlias("dragonHead")
-public class DragonHead {
+public class DragonHead implements Serializable {
 
     private double eyesCount;
 

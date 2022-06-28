@@ -9,7 +9,7 @@ public final class ResultReceiver {
     private ResultReceiver() {
     }
 
-    public static void receiveResult (socketWorker socketWorker) {
+    public static void receiveResult (SocketWorker socketWorker) {
         try {
             CommandResult commandResult = null;
             for (int i = 0; i < 50 && commandResult == null; i++) {

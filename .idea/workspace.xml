@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84d3894-8e6d-48fe-8c86-2b197b6feeb3" name="Changes" comment="ending with Client and Server">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataFile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DataFile.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithDragonCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithDragonCommandRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithoutArgsCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithoutArgsCommandRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java" afterDir="false" />
@@ -28,17 +32,17 @@
       <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonHead.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/ConsoleThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/ConsoleThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/RequestThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/RequestThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/DragonTreeMapStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/DragonTreeMapStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/factories/FileDragonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/factories/FileDragonFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/XMLFileChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/XMLFileChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/XMLReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/XMLReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +124,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/master" />
+  </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -147,7 +154,8 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -292,6 +300,8 @@
       <workItem from="1656079249789" duration="3585000" />
       <workItem from="1656144264524" duration="5244000" />
       <workItem from="1656153910287" duration="862000" />
+      <workItem from="1656410444385" duration="9521000" />
+      <workItem from="1656428732870" duration="2707000" />
     </task>
     <servers />
   </component>

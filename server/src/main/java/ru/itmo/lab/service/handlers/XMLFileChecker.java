@@ -3,6 +3,7 @@ package ru.itmo.lab.service.handlers;
 import ru.itmo.lab.repository.Factory;
 import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.repository.factories.FileDragonFactory;
+import ru.itmo.lab.service.OutputMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class XMLFileChecker {
                 Factory factory = new FileDragonFactory(dragon);
                 factory.generateDragonData();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputMessage.printErrorMessage(e.getMessage());
                 System.exit(0);
             }
         }

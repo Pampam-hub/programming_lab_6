@@ -11,12 +11,10 @@ import java.util.Scanner;
 public class ConsoleThread extends Thread {
     private final ConsoleReader consoleReader;
     private final Storage storage;
-    private final Scanner scanner;
 
-    public ConsoleThread(ConsoleReader consoleReader, Storage storage, Scanner scanner) {
+    public ConsoleThread(ConsoleReader consoleReader, Storage storage) {
         this.consoleReader = consoleReader;
         this.storage = storage;
-        this.scanner = scanner;
     }
 
     @Override

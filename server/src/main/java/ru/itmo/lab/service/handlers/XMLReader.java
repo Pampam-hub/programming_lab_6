@@ -46,8 +46,5 @@ public class XMLReader {
         for (Dragon dragon : dragons) {
             storage.save(dragon);
         }
-
     }
-
-
 }

@@ -1,6 +1,8 @@
 package ru.itmo.lab.entity;
 
-public enum DragonCharacter {
+import java.io.Serializable;
+
+public enum DragonCharacter implements Serializable {
     GOOD,
     CHAOTIC,
     FICKLE;

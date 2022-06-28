@@ -4,6 +4,7 @@ import ru.itmo.lab.repository.Factory;
 import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.entity.DragonCharacter;
 import ru.itmo.lab.entity.DragonType;
+import ru.itmo.lab.service.OutputMessage;
 import ru.itmo.lab.service.handlers.DragonValidator;
 
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class FileDragonFactory implements Factory {
             checkDragonType();
             checkDragonCharacter();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " change collection, please");
+            OutputMessage.printErrorMessage(e.getMessage() + ", change collection, please");
             System.exit(0);
         }
 
@@ -43,6 +44,7 @@ public class FileDragonFactory implements Factory {
 
     void checkName() throws IllegalArgumentException {
         String name = dragon.getName();
+        System.out.println(name);
         DragonValidator<String> dragonValidator = new DragonValidator<>(name);
         dragonValidator.validateValueNull(false, "name");
     }

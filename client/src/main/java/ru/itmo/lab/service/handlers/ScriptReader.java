@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ScriptReader {
-    socketWorker socketWorker;
+    SocketWorker socketWorker;
 
-    public ScriptReader(socketWorker socketWorker) {
+    public ScriptReader(SocketWorker socketWorker) {
         this.socketWorker = socketWorker;
     }
 

@@ -1,6 +1,8 @@
 package ru.itmo.lab.entity;
 
-public enum DragonType {
+import java.io.Serializable;
+
+public enum DragonType implements Serializable {
     WATER,
     UNDERGROUND,
     FIRE;

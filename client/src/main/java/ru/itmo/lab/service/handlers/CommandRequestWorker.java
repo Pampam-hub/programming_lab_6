@@ -9,7 +9,7 @@ import java.io.IOException;
 public class CommandRequestWorker {
     private final static CommandRequestCreator requestCreator = new CommandRequestCreator();
 
-    public static void superpupermethod(String line, socketWorker socketWorker) throws IOException {
+    public static void superpupermethod(String line, SocketWorker socketWorker) throws IOException {
         CommandToSend commandToSend = CommandToSendCreator.createCommandToSend(line);
         try {
             if ("execute_script".equals(commandToSend.getCommandName())) {

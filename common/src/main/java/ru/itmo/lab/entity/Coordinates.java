@@ -2,8 +2,10 @@ package ru.itmo.lab.entity;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
+
 @XStreamAlias("coordinates")
-public class Coordinates {
+public class Coordinates implements Serializable {
 
     private long x;
 

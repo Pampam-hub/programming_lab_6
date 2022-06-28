@@ -10,11 +10,14 @@ import ru.itmo.lab.service.commands.clientcommands.*;
 import ru.itmo.lab.service.handlers.*;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) {
         String file = System.getenv("DATA_FILEPATH");
+        if(file == null) {
+            OutputMessage.printErrorMessage("DATA_FILEPATH env variable is not specified ");
+            System.exit(1);
+        }
 
         try {
             FileChecker.checkFile(file);
@@ -31,17 +34,16 @@ public class Server {
             
             XMLReader.readFromXML(file, storage);
             OutputMessage.printSuccessfulMessage("Collection from file was add successfully");
-            Scanner scanner = new Scanner(System.in);
             SocketWorker socketWorker = startSocketWorker();
 
             RequestThread requestThread = new RequestThread(socketWorker, commandExecutor, storage);
             ConsoleReader consoleReader = new ConsoleReader(commandExecutor);
-            ConsoleThread consoleThread = new ConsoleThread(consoleReader, storage, scanner);
+            ConsoleThread consoleThread = new ConsoleThread(consoleReader, storage);
 
             requestThread.start();
             consoleThread.start();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            OutputMessage.printErrorMessage(e.getMessage());
         }
 
     }

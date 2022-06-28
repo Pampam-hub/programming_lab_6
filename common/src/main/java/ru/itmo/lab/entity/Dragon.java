@@ -1,11 +1,13 @@
 package ru.itmo.lab.entity;
 
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @XStreamAlias("dragon")
-public class Dragon {
+public class Dragon implements Serializable {
 
     @XStreamAlias("id")
     private Integer id;

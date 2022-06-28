@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     implementation(project(":common"))
+    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.19'
 }
 
 tasks.jar {

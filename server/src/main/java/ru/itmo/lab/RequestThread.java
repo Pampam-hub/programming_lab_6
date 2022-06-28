@@ -4,6 +4,7 @@ package ru.itmo.lab;
 import ru.itmo.lab.repository.Storage;
 import ru.itmo.lab.repository.commandresult.CommandResult;
 import ru.itmo.lab.request.Request;
+import ru.itmo.lab.service.OutputMessage;
 import ru.itmo.lab.service.handlers.CommandExecutor;
 import ru.itmo.lab.service.handlers.SocketWorker;
 
@@ -29,9 +30,9 @@ public class RequestThread extends Thread {
                 CommandResult result = commandExecutor.executeClientCommand(storage, acceptedRequest);
                 socketWorker.sendResult(result);
             } catch (IOException e) {
-                System.out.println("During processing a request from a client");
+                OutputMessage.printErrorMessage("During processing a request from a client");
             } catch (ClassNotFoundException e) {
-                System.out.println("Invalid request from the client");
+                OutputMessage.printErrorMessage("Invalid request from the client");
             }
         }
     }

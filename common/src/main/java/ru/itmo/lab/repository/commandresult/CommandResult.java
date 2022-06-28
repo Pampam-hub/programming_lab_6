@@ -3,12 +3,13 @@ package ru.itmo.lab.repository.commandresult;
 import ru.itmo.lab.entity.Dragon;
 import ru.itmo.lab.service.OutputMessage;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Deque;
 import java.util.List;
 
 
-public class CommandResult {
+public class CommandResult implements Serializable {
     // what's happen?
     protected String message;
     // status of result(success or not) enum
