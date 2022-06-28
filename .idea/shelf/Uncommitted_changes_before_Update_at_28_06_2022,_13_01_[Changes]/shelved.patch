@@ -1,0 +1,862 @@
+Index: common/src/main/java/ru/itmo/lab/entity/DragonType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.entity;\n\npublic enum DragonType {\n    WATER,\n    UNDERGROUND,\n    FIRE;\n\n    public static StringBuilder show() {\n        StringBuilder dragonTypes = new StringBuilder();\n        for(DragonType type: values()) {\n            dragonTypes.append(type);\n            dragonTypes.append(\", \");\n        }\n        dragonTypes.deleteCharAt(dragonTypes.length()-1);\n        dragonTypes.deleteCharAt(dragonTypes.length()-1);\n        return dragonTypes;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/entity/DragonType.java b/common/src/main/java/ru/itmo/lab/entity/DragonType.java
+--- a/common/src/main/java/ru/itmo/lab/entity/DragonType.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/entity/DragonType.java	(date 1656139873702)
+@@ -1,6 +1,8 @@
+ package ru.itmo.lab.entity;
+ 
+-public enum DragonType {
++import java.io.Serializable;
++
++public enum DragonType implements Serializable {
+     WATER,
+     UNDERGROUND,
+     FIRE;
+Index: common/src/main/java/ru/itmo/lab/entity/Dragon.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.entity;\n\nimport com.thoughtworks.xstream.annotations.XStreamAlias;\n\nimport java.time.LocalDateTime;\n\n@XStreamAlias(\"dragon\")\npublic class Dragon {\n\n    @XStreamAlias(\"id\")\n    private Integer id;\n\n    @XStreamAlias(\"name\")\n    private String name;\n\n    @XStreamAlias(\"coordinates\")\n    private Coordinates coordinates;\n    // Поле не может быть null, значение генерируется автоматически\n    @XStreamAlias(\"creationDate\")\n    private LocalDateTime creationDate;\n    // Значение поля > 0, поле не может быть null\n    @XStreamAlias(\"age\")\n    private Integer age;\n    // Значение поля > 0\n    @XStreamAlias(\"wingspan\")\n    private int wingspan;\n    // Поле не может быть null\n    @XStreamAlias(\"dragonType\")\n    private DragonType type;\n    // Поле не может быть null\n    @XStreamAlias(\"dragonCharacter\")\n    private DragonCharacter dragonCharacter;\n    @XStreamAlias(\"dragonHead\")\n    private DragonHead dragonHead;\n\n    public void setId(Integer id) {\n        this.id = id;\n    }\n    /**\n     * Метод, возвращающий значение поля id у текущего элемента коллекции\n     *\n     * @return id дракона\n     */\n    public Integer getId() {\n        return id;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public Coordinates getCoordinates() {\n        return coordinates;\n    }\n\n    public void setCoordinates(Coordinates coordinates) {\n        this.coordinates = coordinates;\n    }\n\n    public LocalDateTime getCreationDate() {\n        return creationDate;\n    }\n\n    public void setCreationDate(LocalDateTime creationDate) {\n        this.creationDate = creationDate;\n    }\n\n    public void setCreationDate() {\n        creationDate = LocalDateTime.now();\n    }\n\n    public Integer getAge() {\n        return age;\n    }\n\n    public void setAge(Integer age) {\n        this.age = age;\n    }\n\n    public int getWingspan() {\n        return wingspan;\n    }\n\n    public void setWingspan(int wingspan) {\n        this.wingspan = wingspan;\n    }\n\n    public DragonType getType() {\n        return type;\n    }\n\n    public void setType(DragonType type) {\n        this.type = type;\n    }\n\n    public DragonCharacter getDragonCharacter() {\n        return dragonCharacter;\n    }\n\n    public void setCharacter(DragonCharacter dragonCharacter) {\n        this.dragonCharacter = dragonCharacter;\n    }\n\n    public DragonHead getDragonHead() {\n        return dragonHead;\n    }\n\n    public void setDragonHead(DragonHead dragonHead) {\n        this.dragonHead = dragonHead;\n    }\n\n    @Override\n    public String toString() {\n        return \"Dragon{ \" +\n                \"id: \" + id +\n                \", name: '\" + name + '\\'' +\n                \", \" + coordinates +\n                \", creationDate: \" + creationDate +\n                \", age: \" + age +\n                \", wingspan: \" + wingspan +\n                \", type: \" + type +\n                \", dragonCharacter: \" + dragonCharacter +\n                \", \" + dragonHead + \" }\";\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/entity/Dragon.java b/common/src/main/java/ru/itmo/lab/entity/Dragon.java
+--- a/common/src/main/java/ru/itmo/lab/entity/Dragon.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/entity/Dragon.java	(date 1656153775057)
+@@ -2,10 +2,11 @@
+ 
+ import com.thoughtworks.xstream.annotations.XStreamAlias;
+ 
++import java.io.Serializable;
+ import java.time.LocalDateTime;
+ 
+ @XStreamAlias("dragon")
+-public class Dragon {
++public class Dragon implements Serializable {
+ 
+     @XStreamAlias("id")
+     private Integer id;
+@@ -31,7 +32,7 @@
+     @XStreamAlias("dragonCharacter")
+     private DragonCharacter dragonCharacter;
+     @XStreamAlias("dragonHead")
+-    private DragonHead dragonHead;
++    private transient DragonHead dragonHead;
+ 
+     public void setId(Integer id) {
+         this.id = id;
+Index: client/src/main/java/ru/itmo/lab/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab;\n\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.service.handlers.socketWorker;\nimport ru.itmo.lab.service.handlers.ConsoleReader;\n\nimport java.io.IOException;\n\npublic class Client {\n    public static void main(String[] args) {\n        try {\n            socketWorker socketWorker = startClientWorker();\n\n            ConsoleReader consoleReader = new ConsoleReader(socketWorker);\n            consoleReader.readFromConsole();\n        } catch (IOException e) {\n            OutputMessage.printErrorMessage(\"failed to open datagram channel\");\n        }\n    }\n\n    private static socketWorker startClientWorker() throws IOException {\n        return new socketWorker();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/Client.java b/client/src/main/java/ru/itmo/lab/Client.java
+--- a/client/src/main/java/ru/itmo/lab/Client.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/Client.java	(date 1656073388393)
+@@ -1,15 +1,16 @@
+ package ru.itmo.lab;
+ 
+ import ru.itmo.lab.service.OutputMessage;
+-import ru.itmo.lab.service.handlers.socketWorker;
+ import ru.itmo.lab.service.handlers.ConsoleReader;
++import ru.itmo.lab.service.handlers.SocketWorker;
+ 
+ import java.io.IOException;
+ 
++
+ public class Client {
+     public static void main(String[] args) {
+         try {
+-            socketWorker socketWorker = startClientWorker();
++            SocketWorker socketWorker = startClientWorker();
+ 
+             ConsoleReader consoleReader = new ConsoleReader(socketWorker);
+             consoleReader.readFromConsole();
+@@ -18,7 +19,7 @@
+         }
+     }
+ 
+-    private static socketWorker startClientWorker() throws IOException {
+-        return new socketWorker();
++    private static SocketWorker startClientWorker() throws IOException {
++        return new SocketWorker();
+     }
+ }
+Index: common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\n\nimport java.util.NoSuchElementException;\nimport java.util.Scanner;\nimport java.util.function.Function;\nimport java.util.function.Predicate;\n\npublic class DragonValidator<T> {\n    private String string;\n    private T value;\n\n    public DragonValidator(String string, T value) {\n        this.string = string;\n    }\n\n    public DragonValidator(T value) {\n        this.value = value;\n    }\n\n    public DragonValidator(Scanner scanner) {\n        try {\n            string = scanner.nextLine();\n        } catch (NoSuchElementException e) {\n            System.out.println(\"\\nInvalid character entered\");\n            System.exit(0);\n        }\n    }\n\n    public static void validateNumberOfArgs(String[] args, int numberOfArgs) {\n        if (args.length != numberOfArgs) {\n            throw new IllegalArgumentException(\"\\nWrong number of arguments, \" +\n                    \"this command expects \" + numberOfArgs + \" arguments\");\n        }\n    }\n\n    public static void validateId(String id) {\n        // либу надо подключить\n        /*\n        if(!NumberUtils.isParasable(id)) {\n            throw new IllegalArgumentException(\"id must be an integer\");\n        }\n        Integer.parseInt(id);\n\n\n         */\n    }\n\n    public void validateNull(boolean nullable) {\n        if (\"\".equals(string) ) {\n            if (nullable)\n                value = null;\n            else\n                throw new IllegalArgumentException(\"\\nValue can't be null\");\n        }\n    }\n\n    public void validateValueNull(boolean nullable, String name) {\n        if (value == null) {\n            if (!nullable)\n                throw new IllegalArgumentException(name + \" can't be null\");\n        }\n    }\n\n    public void validateFunction(Function<String, T> function, String description) {\n        if (!\"\".equals(string) ) {\n            try {\n                value = function.apply(string);\n            } catch (IllegalArgumentException e) {\n                throw new IllegalArgumentException(\"\\n\" + description);\n            }\n        }\n    }\n\n    public void validatePredicate(Predicate<Object> predicate, String error) {\n        if (!\"\".equals(string)) {\n            if (!predicate.test(value)) {\n                throw new IllegalArgumentException(error);\n            }\n        }\n    }\n\n    public T getValue() {\n        if (value == null && !\"\".equals(string)) {\n            value = (T) string;\n        }\n        return value;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java b/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java
+--- a/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java	(date 1656153959915)
+@@ -10,7 +10,7 @@
+     private String string;
+     private T value;
+ 
+-    public DragonValidator(String string, T value) {
++    public DragonValidator(String string) {
+         this.string = string;
+     }
+ 
+Index: server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.Storage;\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.repository.exceptions.EntityNotFoundException;\nimport ru.itmo.lab.request.Request;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.service.commands.clientcommands.ClientCommand;\nimport ru.itmo.lab.service.commands.servercommands.ServerCommand;\n\nimport java.util.Arrays;\nimport java.util.LinkedHashMap;\nimport java.util.Map;\n\npublic class CommandExecutor {\n    public static Map<String, ClientCommand> CLIENT_AVAILABLE_COMMANDS = new LinkedHashMap<>();\n    public static Map<String, ServerCommand> SERVER_AVAILABLE_COMMANDS = new LinkedHashMap<String, ServerCommand>();\n\n    public CommandExecutor(ClientCommand helpCommand, ClientCommand infoCommand,\n                           ClientCommand showCommand, ClientCommand insertCommand,\n                           ClientCommand updateCommand, ClientCommand removeKeyCommand,\n                           ClientCommand clearCommand, ClientCommand exitCommand,\n                           ClientCommand removeLowerCommand, ClientCommand historyCommand,\n                           ClientCommand removeLowerKeyCommand, ClientCommand minByAgeCommand,\n                           ClientCommand filterGreaterThanTypeCommand,\n                           ClientCommand printFieldDescendingAgeCommand,\n                           ServerCommand helpCommandServer, ServerCommand saveCommand,\n                           ServerCommand exitCommandServer) {\n\n        CLIENT_AVAILABLE_COMMANDS.put(helpCommand.getName(), helpCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(infoCommand.getName(), infoCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(showCommand.getName(), showCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(insertCommand.getName(), insertCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(updateCommand.getName(), updateCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(removeKeyCommand.getName(), removeKeyCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(clearCommand.getName(), clearCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(exitCommand.getName(), exitCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(removeLowerCommand.getName(),\n                removeLowerCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(historyCommand.getName(), historyCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(removeLowerKeyCommand.getName(),\n                removeLowerKeyCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(minByAgeCommand.getName(), minByAgeCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(filterGreaterThanTypeCommand.getName(),\n                filterGreaterThanTypeCommand);\n        CLIENT_AVAILABLE_COMMANDS.put(printFieldDescendingAgeCommand.getName(),\n                printFieldDescendingAgeCommand);\n\n        SERVER_AVAILABLE_COMMANDS.put(helpCommandServer.getName(), helpCommandServer);\n        SERVER_AVAILABLE_COMMANDS.put(saveCommand.getName(), saveCommand);\n        SERVER_AVAILABLE_COMMANDS.put(exitCommandServer.getName(), exitCommandServer);\n    }\n\n    public CommandResult executeClientCommand(Storage storage, Request request) {\n        CommandResult commandResult;\n\n        ClientCommand command = CLIENT_AVAILABLE_COMMANDS.get(request.getCommandName());\n        storage.fillHistory(command);\n        commandResult = command.execute(storage, request);\n\n        return commandResult;\n    }\n\n    public CommandResult executeServerCommand(Storage storage, String string) {\n        CommandResult commandResult = null;\n\n        string = string.trim();\n        String[] splintedString = string.split(\" \");\n        String commandName = splintedString[0].toLowerCase();\n        String[] commandsArgs = Arrays.copyOfRange(splintedString, 1, splintedString.length);\n\n        if(SERVER_AVAILABLE_COMMANDS.containsKey(commandName)) {\n            ServerCommand command = SERVER_AVAILABLE_COMMANDS.get(commandName);\n            commandResult = command.execute(storage, commandsArgs);\n            commandResult.showCommandResult();\n        } else {\n            OutputMessage.printErrorMessage(\"\\nThere is no such command, for reference, enter command \\\"help\\\" \");\n        }\n\n        return commandResult;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java b/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java
+--- a/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java	(date 1656152830099)
+@@ -11,6 +11,7 @@
+ import java.util.Arrays;
+ import java.util.LinkedHashMap;
+ import java.util.Map;
++import java.util.stream.Collectors;
+ 
+ public class CommandExecutor {
+     public static Map<String, ClientCommand> CLIENT_AVAILABLE_COMMANDS = new LinkedHashMap<>();
+@@ -26,7 +27,7 @@
+                            ClientCommand printFieldDescendingAgeCommand,
+                            ServerCommand helpCommandServer, ServerCommand saveCommand,
+                            ServerCommand exitCommandServer) {
+-
++        //Arrays.stream(helpCommand).collect(Collectors.toMap(c->c.getName(), c->c));
+         CLIENT_AVAILABLE_COMMANDS.put(helpCommand.getName(), helpCommand);
+         CLIENT_AVAILABLE_COMMANDS.put(infoCommand.getName(), infoCommand);
+         CLIENT_AVAILABLE_COMMANDS.put(showCommand.getName(), showCommand);
+@@ -76,7 +77,6 @@
+         } else {
+             OutputMessage.printErrorMessage("\nThere is no such command, for reference, enter command \"help\" ");
+         }
+-
+         return commandResult;
+     }
+ }
+Index: client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.factories;\n\nimport ru.itmo.lab.service.handlers.DragonValidator;\nimport ru.itmo.lab.repository.Factory;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.entity.*;\nimport ru.itmo.lab.repository.ConsoleWorker;\n\nimport java.util.Scanner;\n\npublic class ConsoleDragonFactory implements Factory {\n    private Dragon dragon;\n    private Coordinates coordinates = new Coordinates();\n\n    private Scanner scanner = ConsoleWorker.getConsoleWorker().getScanner();\n\n    public ConsoleDragonFactory() {\n        dragon = new Dragon();\n    }\n\n    @Override\n    public void generateDragonData() {\n        setValue(\"Enter dragon name:\", this::setName);\n        setValue(\"Enter x coordinate, value must be an integer\", this::setX);\n        setValue(\"Enter y coordinate, value must be a number\", this::setY);\n        setValue(\"Enter dragon age, value must be a positive number\", this::setAge);\n        setValue(\"Enter dragon wingspan, value must be an integer positive \", this::setWingspan);\n        setValue(\"Enter dragon type, available values: \" +\n                DragonType.show(), this::setDragonType);\n        setValue(\"Enter dragon character, available values: \" +\n                DragonCharacter.show(), this::setDragonCharacter);\n        setValue(\"Enter count of dragon eyes, value must be a positive number, \" +\n                \"if you want to leave this field null - press enter\", this::setEyesCount);\n    }\n\n    void setValue(String message, Runnable runnable) {\n        System.out.println(message);\n        boolean isRunning = true;\n        while (isRunning) {\n            try {\n                runnable.run();\n                isRunning = false;\n            } catch (IllegalArgumentException e) {\n                OutputMessage.printErrorMessage(e.getMessage() + \", repeat input\");\n            }\n\n        }\n    }\n\n    void setName() throws IllegalArgumentException {\n        DragonValidator<String> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragon.setName(dragonValidator.getValue());\n    }\n\n    void setX() throws IllegalArgumentException {\n        DragonValidator<Long> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Long::parseLong,\n                \"value of x must be an integer\");\n\n        coordinates.setX(dragonValidator.getValue());\n    }\n\n    void setY() throws IllegalArgumentException {\n        DragonValidator<Float> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Float::parseFloat,\n                \"value of y must be a number\");\n        coordinates.setY(dragonValidator.getValue());\n        dragon.setCoordinates(coordinates);\n    }\n\n    void setAge() throws IllegalArgumentException {\n        DragonValidator<Integer> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Integer::parseInt,\n                \"value of age must be an integer \");\n        dragonValidator.validatePredicate(arg -> (int) arg > 0,\n                \"value of age must be a positive\");\n        dragon.setAge(dragonValidator.getValue());\n    }\n\n    void setWingspan() throws IllegalArgumentException {\n        DragonValidator<Integer> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Integer::parseInt,\n                \"value of wingspan must be an integer \");\n        dragonValidator.validatePredicate(arg -> (int) arg > 0,\n                \"value of age must be a positive\");\n        dragon.setWingspan(dragonValidator.getValue());\n    }\n\n    void setDragonType() throws IllegalArgumentException {\n        DragonValidator<DragonType> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(DragonType::valueOf, \"value of dragon type \" +\n                \"must be from list \" + DragonType.show() + \" letter case must be the same\");\n        dragon.setType(dragonValidator.getValue());\n    }\n\n    void setDragonCharacter() throws IllegalArgumentException {\n        DragonValidator<DragonCharacter> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(DragonCharacter::valueOf, \"value of dragon character \" +\n                \"must be from list \" + DragonCharacter.show() + \" letter case must be the same\");\n        dragon.setCharacter(dragonValidator.getValue());\n    }\n\n    void setEyesCount() throws IllegalArgumentException {\n        DragonValidator<Double> dragonValidator = new DragonValidator<>(scanner);\n        dragonValidator.validateNull(true);\n        dragonValidator.validateFunction(Double::parseDouble, \"count of dragon eyes \" +\n                \"must be a number \");\n        dragonValidator.validatePredicate(arg -> (double) arg > 0,\n                \"count of eyes must be a positive\");\n        if(dragonValidator.getValue() != null) {\n            DragonHead dragonHead = new DragonHead();\n            dragonHead.setEyesCount(dragonValidator.getValue());\n            dragon.setDragonHead(dragonHead);\n        }\n    }\n\n    public Dragon getDragon() {\n        return dragon;\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java b/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java
+--- a/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java	(date 1656154245396)
+@@ -43,7 +43,6 @@
+             } catch (IllegalArgumentException e) {
+                 OutputMessage.printErrorMessage(e.getMessage() + ", repeat input");
+             }
+-
+         }
+     }
+ 
+@@ -87,7 +86,7 @@
+         dragonValidator.validateFunction(Integer::parseInt,
+                 "value of wingspan must be an integer ");
+         dragonValidator.validatePredicate(arg -> (int) arg > 0,
+-                "value of age must be a positive");
++                "value of wingspan must be a positive");
+         dragon.setWingspan(dragonValidator.getValue());
+     }
+ 
+Index: common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.request.Request;\n\nimport java.io.ByteArrayInputStream;\nimport java.io.IOException;\nimport java.io.ObjectInputStream;\nimport java.nio.ByteBuffer;\n\npublic final class Deserializer {\n\n    private Deserializer() {\n    }\n\n    public static Request deSerializeRequest(byte[] acceptedBuf)\n            throws IOException, ClassNotFoundException {\n        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(acceptedBuf);\n             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {\n            return (Request) objectInputStream.readObject();\n        }\n    }\n\n    public static CommandResult deSerializeResult(ByteBuffer byteBuffer)\n            throws IOException, ClassNotFoundException {\n        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteBuffer.array());\n             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {\n            return (CommandResult) objectInputStream.readObject();\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java b/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java
+--- a/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java	(date 1656154075244)
+@@ -13,15 +13,15 @@
+     private Deserializer() {
+     }
+ 
+-    public static Request deSerializeRequest(byte[] acceptedBuf)
++    public static Request deserializeRequest(byte[] acceptedBuf)
+             throws IOException, ClassNotFoundException {
+         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(acceptedBuf);
+              ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+-            return (Request) objectInputStream.readObject();
++             return (Request) objectInputStream.readObject();
+         }
+     }
+ 
+-    public static CommandResult deSerializeResult(ByteBuffer byteBuffer)
++    public static CommandResult deserializeResult(ByteBuffer byteBuffer)
+             throws IOException, ClassNotFoundException {
+         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteBuffer.array());
+              ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+Index: common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.entity;\n\npublic enum DragonCharacter {\n    GOOD,\n    CHAOTIC,\n    FICKLE;\n\n    public static StringBuilder show() {\n        StringBuilder dragonCharacters = new StringBuilder(\"\");\n        for(DragonCharacter character: values()) {\n            dragonCharacters.append(character);\n            dragonCharacters.append(\", \");\n        }\n        dragonCharacters.deleteCharAt(dragonCharacters.length()-1);\n        dragonCharacters.deleteCharAt(dragonCharacters.length()-1);\n        return dragonCharacters;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java b/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java
+--- a/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java	(date 1656139873713)
+@@ -1,6 +1,8 @@
+ package ru.itmo.lab.entity;
+ 
+-public enum DragonCharacter {
++import java.io.Serializable;
++
++public enum DragonCharacter implements Serializable {
+     GOOD,
+     CHAOTIC,
+     FICKLE;
+Index: common/src/main/java/ru/itmo/lab/entity/Coordinates.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.entity;\n\nimport com.thoughtworks.xstream.annotations.XStreamAlias;\n\n@XStreamAlias(\"coordinates\")\npublic class Coordinates {\n\n    private long x;\n\n    private float y;\n\n    public long getX() {\n        return x;\n    }\n\n    public void setX(long x) {\n        this.x = x;\n    }\n\n    public float getY() {\n        return y;\n    }\n\n    public void setY(float y) {\n        this.y = y;\n    }\n\n    @Override\n    public String toString() {\n        return \"Coordinates{\" +\n                \"x=\" + x +\n                \", y=\" + y +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/entity/Coordinates.java b/common/src/main/java/ru/itmo/lab/entity/Coordinates.java
+--- a/common/src/main/java/ru/itmo/lab/entity/Coordinates.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/entity/Coordinates.java	(date 1656139873709)
+@@ -2,8 +2,10 @@
+ 
+ import com.thoughtworks.xstream.annotations.XStreamAlias;
+ 
++import java.io.Serializable;
++
+ @XStreamAlias("coordinates")
+-public class Coordinates {
++public class Coordinates implements Serializable {
+ 
+     private long x;
+ 
+Index: client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.ConsoleWorker;\n\nimport java.io.BufferedInputStream;\nimport java.io.FileInputStream;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class ScriptReader {\n    socketWorker socketWorker;\n\n    public ScriptReader(socketWorker socketWorker) {\n        this.socketWorker = socketWorker;\n    }\n\n    public void readFromScript(String file) throws IOException {\n        Scanner scanner = new Scanner(new BufferedInputStream(new FileInputStream(file)));\n\n        ConsoleWorker.getConsoleWorker().setScanner(scanner);\n        while(scanner.hasNext()) {\n            String line = scanner.nextLine();\n            CommandRequestWorker.superpupermethod(line, socketWorker);\n        }\n\n        scanner.close();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java b/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java	(date 1656074834772)
+@@ -8,9 +8,9 @@
+ import java.util.Scanner;
+ 
+ public class ScriptReader {
+-    socketWorker socketWorker;
++    private final SocketWorker socketWorker;
+ 
+-    public ScriptReader(socketWorker socketWorker) {
++    public ScriptReader(SocketWorker socketWorker) {
+         this.socketWorker = socketWorker;
+     }
+ 
+Index: server/src/main/java/ru/itmo/lab/repository/Storage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.repository;\n\nimport ru.itmo.lab.entity.Dragon;\nimport ru.itmo.lab.repository.exceptions.EntityAlreadyExistsException;\nimport ru.itmo.lab.repository.exceptions.EntityNotFoundException;\nimport ru.itmo.lab.service.commands.clientcommands.ClientCommand;\n\nimport java.util.Comparator;\nimport java.util.Deque;\nimport java.util.HashSet;\nimport java.util.List;\n\npublic interface Storage<T, U> {\n    void setIdCounter(U id);\n    void save(T entity);\n    void addElement(U id, T entity) throws EntityAlreadyExistsException;\n    T read(U id) throws EntityNotFoundException;\n    void update(U id, T entity) throws EntityNotFoundException;\n    void remove(U id) throws EntityNotFoundException;\n    void removeLower(T entity);\n    void removeLowerKey(U id);\n    // if work with clients we need clientName to removeAll\n    void removeAll();\n    List<T> readAll();\n    T min(Comparator< Dragon> com);\n    List<T> sortDragons(Comparator<Dragon> com);\n    void fillHistory(ClientCommand command);\n    void addPreviousFiles(String file);\n    void deleteFromPreviousFiles(String file);\n    Deque<String> getHistory();\n    HashSet<String> getPreviousFiles();\n    String getInfo();\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/repository/Storage.java b/server/src/main/java/ru/itmo/lab/repository/Storage.java
+--- a/server/src/main/java/ru/itmo/lab/repository/Storage.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/repository/Storage.java	(date 1656073132276)
+@@ -10,7 +10,7 @@
+ import java.util.HashSet;
+ import java.util.List;
+ 
+-public interface Storage<T, U> {
++public interface Storage<T, U extends Comparable<U>> {
+     void setIdCounter(U id);
+     void save(T entity);
+     void addElement(U id, T entity) throws EntityAlreadyExistsException;
+@@ -22,8 +22,8 @@
+     // if work with clients we need clientName to removeAll
+     void removeAll();
+     List<T> readAll();
+-    T min(Comparator< Dragon> com);
+-    List<T> sortDragons(Comparator<Dragon> com);
++    T min(Comparator< T> com);
++    List<T> sortDragons(Comparator<T> com);
+     void fillHistory(ClientCommand command);
+     void addPreviousFiles(String file);
+     void deleteFromPreviousFiles(String file);
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Project exclude paths\n/.gradle/\n/build/\n/client/build/\n/client/build/classes/java/main/\n/common/build/\n/common/build/classes/java/main/\n/server/build/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/.gitignore	(date 1656049865409)
+@@ -1,5 +1,6 @@
+ # Project exclude paths
+ /.gradle/
++/.idea/
+ /build/
+ /client/build/
+ /client/build/classes/java/main/
+Index: client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.service.handlers.Deserializer;\nimport ru.itmo.lab.service.handlers.Serializer;\nimport ru.itmo.lab.request.Request;\n\nimport java.io.IOException;\nimport java.net.InetAddress;\nimport java.net.InetSocketAddress;\nimport java.net.SocketAddress;\nimport java.nio.ByteBuffer;\nimport java.nio.channels.DatagramChannel;\n\npublic class socketWorker {\n    private static final int DEFAULT_PORT = 1425;\n    private final DatagramChannel datagramChannel;\n    private SocketAddress socketAddress;\n    private InetAddress host;\n    private int port = DEFAULT_PORT;\n\n    private String address = \"localhost\";\n\n    public socketWorker() throws IOException {\n        host = InetAddress.getByName(address);\n        socketAddress = new InetSocketAddress(host, port);\n        datagramChannel = DatagramChannel.open();\n        datagramChannel.bind(null);\n        datagramChannel.configureBlocking(false);\n    }\n\n    public void sendRequest(Request request) throws IOException {\n        try {\n            ByteBuffer bufferToSend = Serializer.serializeRequest(request);\n            datagramChannel.send(bufferToSend, socketAddress);\n        } catch (IOException e) {\n            throw new IOException(\"error sending the request\");\n        }\n    }\n\n    public CommandResult receiveResult() throws IOException, ClassNotFoundException {\n        int receivedSize = datagramChannel.socket().getReceiveBufferSize();\n        ByteBuffer bufferToReceive = ByteBuffer.allocate(receivedSize);\n        SocketAddress socketAddress = datagramChannel.receive(bufferToReceive);\n        if (socketAddress == null) {\n            return null;\n        }\n        return Deserializer.deSerializeResult(bufferToReceive);\n    }\n\n    public int getPort() {\n        return port;\n    }\n\n    public String getAddress() {\n        return address;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java b/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java	(date 1656143674148)
+@@ -1,8 +1,6 @@
+ package ru.itmo.lab.service.handlers;
+ 
+ import ru.itmo.lab.repository.commandresult.CommandResult;
+-import ru.itmo.lab.service.handlers.Deserializer;
+-import ru.itmo.lab.service.handlers.Serializer;
+ import ru.itmo.lab.request.Request;
+ 
+ import java.io.IOException;
+@@ -12,7 +10,7 @@
+ import java.nio.ByteBuffer;
+ import java.nio.channels.DatagramChannel;
+ 
+-public class socketWorker {
++public class SocketWorker {
+     private static final int DEFAULT_PORT = 1425;
+     private final DatagramChannel datagramChannel;
+     private SocketAddress socketAddress;
+@@ -21,7 +19,7 @@
+ 
+     private String address = "localhost";
+ 
+-    public socketWorker() throws IOException {
++    public SocketWorker() throws IOException {
+         host = InetAddress.getByName(address);
+         socketAddress = new InetSocketAddress(host, port);
+         datagramChannel = DatagramChannel.open();
+@@ -34,7 +32,8 @@
+             ByteBuffer bufferToSend = Serializer.serializeRequest(request);
+             datagramChannel.send(bufferToSend, socketAddress);
+         } catch (IOException e) {
+-            throw new IOException("error sending the request");
++            e.printStackTrace();
++            throw new IOException("error sending the request", e);
+         }
+     }
+ 
+@@ -45,7 +44,7 @@
+         if (socketAddress == null) {
+             return null;
+         }
+-        return Deserializer.deSerializeResult(bufferToReceive);
++        return Deserializer.deserializeResult(bufferToReceive);
+     }
+ 
+     public int getPort() {
+Index: server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.repository.exceptions;\n\npublic class EntityNotFoundException extends Exception {\n    private static final String messageFormat = \"Entity %s with id %d not founded!\";\n\n    public EntityNotFoundException(Class<?> clazz, Integer id) {\n        super(String.format(messageFormat, clazz.getName().substring(19), id));\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java b/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java
+--- a/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java	(date 1656075961704)
+@@ -4,6 +4,6 @@
+     private static final String messageFormat = "Entity %s with id %d not founded!";
+ 
+     public EntityNotFoundException(Class<?> clazz, Integer id) {
+-        super(String.format(messageFormat, clazz.getName().substring(19), id));
++        super(String.format(messageFormat, clazz.getSimpleName(), id));
+     }
+ }
+Index: server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.repository.exceptions;\n\npublic class EntityAlreadyExistsException extends Exception {\n    private static final String messageFormat = \"Entity %s with id %d already exists!\";\n\n    public EntityAlreadyExistsException(Class<?> clazz, Integer id) {\n        super(String.format(messageFormat, clazz.getName().substring(19), id));\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java b/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java
+--- a/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java	(date 1656075961698)
+@@ -4,6 +4,6 @@
+     private static final String messageFormat = "Entity %s with id %d already exists!";
+ 
+     public EntityAlreadyExistsException(Class<?> clazz, Integer id) {
+-        super(String.format(messageFormat, clazz.getName().substring(19), id));
++        super(String.format(messageFormat, clazz.getSimpleName(), id));
+     }
+ }
+Index: client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.request;\n\nimport ru.itmo.lab.entity.DragonType;\nimport ru.itmo.lab.service.handlers.DragonValidator;\nimport ru.itmo.lab.service.CommandToSend;\n\npublic class WithTypeCommandRequest implements CommandRequest {\n    public WithTypeCommandRequest() {\n    }\n\n    @Override\n    public Request createRequest(CommandToSend commandToSend) {\n        DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);\n\n        DragonValidator<DragonType> dragonValidator =\n                new DragonValidator<>(commandToSend.getCommandArgs()[0], null);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(DragonType::valueOf, \"value of dragon type \" +\n                \"must be from list \" + DragonType.show() + \" letter case must be the same\");\n        DragonType type = dragonValidator.getValue();\n\n        return new RequestBuilder()\n                .withName(commandToSend.getCommandName())\n                .withDragonTypeArgument(type).build();\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java b/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java
+--- a/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java	(date 1656154075230)
+@@ -13,7 +13,7 @@
+         DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);
+ 
+         DragonValidator<DragonType> dragonValidator =
+-                new DragonValidator<>(commandToSend.getCommandArgs()[0], null);
++                new DragonValidator<>(commandToSend.getCommandArgs()[0]);
+         dragonValidator.validateNull(false);
+         dragonValidator.validateFunction(DragonType::valueOf, "value of dragon type " +
+                 "must be from list " + DragonType.show() + " letter case must be the same");
+Index: client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.request;\n\nimport ru.itmo.lab.service.CommandToSend;\nimport ru.itmo.lab.service.handlers.DragonValidator;\n\npublic class WithIdCommandRequest implements CommandRequest {\n    public WithIdCommandRequest() {\n    }\n\n    @Override\n    public Request createRequest(CommandToSend commandToSend) {\n        DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);\n\n        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0],null);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Integer::parseInt, \"value of id must be an integer\");\n        Integer id = dragonValidator.getValue();\n\n        return new RequestBuilder()\n                .withName(commandToSend.getCommandName())\n                .withIntegerArgument(id)\n                .build();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java b/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java
+--- a/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java	(date 1656154075246)
+@@ -11,7 +11,7 @@
+     public Request createRequest(CommandToSend commandToSend) {
+         DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);
+ 
+-        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0],null);
++        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0]);
+         dragonValidator.validateNull(false);
+         dragonValidator.validateFunction(Integer::parseInt, "value of id must be an integer");
+         Integer id = dragonValidator.getValue();
+Index: common/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'java'\n\ngroup = \"ru.itmo.lab\"\n\nrepositories {\n    mavenCentral()\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/build.gradle b/common/build.gradle
+--- a/common/build.gradle	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/build.gradle	(date 1656076033274)
+@@ -4,4 +4,8 @@
+ 
+ repositories {
+     mavenCentral()
++}
++
++dependencies {
++    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.19'
+ }
+\ No newline at end of file
+Index: common/src/main/java/ru/itmo/lab/entity/DragonHead.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.entity;\n\nimport com.thoughtworks.xstream.annotations.XStreamAlias;\n\n@XStreamAlias(\"dragonHead\")\npublic class DragonHead {\n\n    private double eyesCount;\n\n    public void setEyesCount(double eyesCount) {\n        this.eyesCount = eyesCount;\n    }\n\n    @Override\n    public String toString() {\n        return \"DragonHead{\" +\n                \"eyesCount=\" + eyesCount +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/entity/DragonHead.java b/common/src/main/java/ru/itmo/lab/entity/DragonHead.java
+--- a/common/src/main/java/ru/itmo/lab/entity/DragonHead.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/entity/DragonHead.java	(date 1656139873711)
+@@ -2,8 +2,10 @@
+ 
+ import com.thoughtworks.xstream.annotations.XStreamAlias;
+ 
++import java.io.Serializable;
++
+ @XStreamAlias("dragonHead")
+-public class DragonHead {
++public class DragonHead implements Serializable {
+ 
+     private double eyesCount;
+ 
+Index: common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.repository.commandresult;\n\nimport ru.itmo.lab.entity.Dragon;\nimport ru.itmo.lab.service.OutputMessage;\n\nimport java.util.Date;\nimport java.util.Deque;\nimport java.util.List;\n\n\npublic class CommandResult {\n    // what's happen?\n    protected String message;\n    // status of result(success or not) enum\n    protected CommandStatus status;\n    // data result\n    protected Date dateOfCommand;\n    // result\n    protected List<Dragon> listOfDragons;\n    protected List<Integer> list;\n    protected List<String> listOfCommand;\n    protected Deque<String> deque;\n    protected String data;\n    protected Dragon dragon;\n    protected boolean isExit = false;\n\n    public void showCommandResult(){\n\n        if (CommandStatus.SUCCESSFUL.equals(status)) {\n            OutputMessage.printSuccessfulMessage(message);\n        } else {\n            OutputMessage.printErrorMessage(message);\n        }\n\n        if(listOfDragons != null) {\n            for(Dragon dragon: listOfDragons) {\n                System.out.println(dragon);\n            }\n        }\n        if(list != null) {\n            for(Integer i: list) {\n                System.out.println(i);\n            }\n        }\n        if(listOfCommand != null) {\n            for(String command: listOfCommand) {\n                System.out.println(command);\n            }\n        }\n        if(deque != null) {\n            for(String string: deque) {\n                System.out.println(string);\n            }\n        }\n        if(data != null) {\n            System.out.println(data);\n        }\n        if(dragon != null) {\n            System.out.println(dragon);\n        }\n        if(isExit) {\n            System.exit(0);\n        }\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java b/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java
+--- a/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java	(date 1656077989571)
+@@ -3,19 +3,20 @@
+ import ru.itmo.lab.entity.Dragon;
+ import ru.itmo.lab.service.OutputMessage;
+ 
++import java.io.Serializable;
+ import java.util.Date;
+ import java.util.Deque;
+ import java.util.List;
+ 
+ 
+-public class CommandResult {
++public class CommandResult implements Serializable {
+     // what's happen?
+     protected String message;
+     // status of result(success or not) enum
+     protected CommandStatus status;
+     // data result
+     protected Date dateOfCommand;
+-    // result
++    // result ;(
+     protected List<Dragon> listOfDragons;
+     protected List<Integer> list;
+     protected List<String> listOfCommand;
+@@ -37,7 +38,7 @@
+                 System.out.println(dragon);
+             }
+         }
+-        if(list != null) {
++        if (list != null) {
+             for(Integer i: list) {
+                 System.out.println(i);
+             }
+Index: client/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'java'\n\ngroup = \"ru.itmo.lab\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    implementation(project(\":common\"))\n}\n\ntasks.jar {\n    manifest {\n        attributes['Main-Class'] = 'ru.itmo.lab.Client'\n    }\n\n    configurations[\"runtimeClasspath\"].forEach {file ->\n        from(zipTree(file.absoluteFile))\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/build.gradle b/client/build.gradle
+--- a/client/build.gradle	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/build.gradle	(date 1656075641177)
+@@ -8,6 +8,7 @@
+ 
+ dependencies {
+     implementation(project(":common"))
++    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.19'
+ }
+ 
+ tasks.jar {
+Index: server/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'java'\n\ngroup = \"ru.itmo.lab\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    implementation(project(\":common\"))\n    implementation group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.19'\n}\n\ntasks.jar {\n    manifest {\n        attributes[\"Main-Class\"] = \"ru.itmo.lab.Server\"\n    }\n\n    configurations[\"runtimeClasspath\"].forEach {file ->\n        from(zipTree(file.absoluteFile))\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/build.gradle b/server/build.gradle
+--- a/server/build.gradle	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/build.gradle	(date 1656076853497)
+@@ -13,7 +13,7 @@
+ 
+ tasks.jar {
+     manifest {
+-        attributes["Main-Class"] = "ru.itmo.lab.Server"
++        attributes['Main-Class'] = 'ru.itmo.lab.Server'
+     }
+ 
+     configurations["runtimeClasspath"].forEach {file ->
+Index: server/src/main/java/ru/itmo/lab/Server.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab;\n\nimport ru.itmo.lab.repository.DragonTreeMapStorage;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.repository.Storage;\nimport ru.itmo.lab.service.commands.servercommands.ExitServerCommand;\nimport ru.itmo.lab.service.commands.servercommands.HelpServerCommand;\nimport ru.itmo.lab.service.commands.servercommands.SaveServerCommand;\nimport ru.itmo.lab.service.commands.clientcommands.*;\nimport ru.itmo.lab.service.handlers.*;\n\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class Server {\n    public static void main(String[] args) {\n        String file = System.getenv(\"DATA_FILEPATH\");\n\n        try {\n            FileChecker.checkFile(file);\n            Storage storage = new DragonTreeMapStorage();\n            CommandExecutor commandExecutor = new CommandExecutor(new HelpCommand(),\n                    new InfoCommand(), new ShowCommand(), new InsertCommand(),\n                    new UpdateCommand(), new RemoveKeyCommand(), new ClearCommand(),\n                    new ExitCommand(), new RemoveLowerCommand(),\n                    new HistoryCommand(), new RemoveLowerKeyCommand(),\n                    new MinByAgeCommand(), new FilterGreaterThanTypeCommand(),\n                    new PrintFieldDescendingAgeCommand(),\n                    new HelpServerCommand(), new SaveServerCommand(),\n                    new ExitServerCommand());\n            \n            XMLReader.readFromXML(file, storage);\n            OutputMessage.printSuccessfulMessage(\"Collection from file was add successfully\");\n            Scanner scanner = new Scanner(System.in);\n            SocketWorker socketWorker = startSocketWorker();\n\n            RequestThread requestThread = new RequestThread(socketWorker, commandExecutor, storage);\n            ConsoleReader consoleReader = new ConsoleReader(commandExecutor);\n            ConsoleThread consoleThread = new ConsoleThread(consoleReader, storage, scanner);\n\n            requestThread.start();\n            consoleThread.start();\n        } catch (IOException e) {\n            System.out.println(e.getMessage());\n        }\n\n    }\n\n    private static SocketWorker startSocketWorker() {\n        return new SocketWorker();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/Server.java b/server/src/main/java/ru/itmo/lab/Server.java
+--- a/server/src/main/java/ru/itmo/lab/Server.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/Server.java	(date 1656151398699)
+@@ -1,5 +1,6 @@
+ package ru.itmo.lab;
+ 
++import ru.itmo.lab.entity.Dragon;
+ import ru.itmo.lab.repository.DragonTreeMapStorage;
+ import ru.itmo.lab.service.OutputMessage;
+ import ru.itmo.lab.repository.Storage;
+@@ -15,10 +16,13 @@
+ public class Server {
+     public static void main(String[] args) {
+         String file = System.getenv("DATA_FILEPATH");
+-
++        if (file == null) {
++            OutputMessage.printErrorMessage("DATA_FILEPATH env variable is not defined");
++            System.exit(1);
++        }
+         try {
+             FileChecker.checkFile(file);
+-            Storage storage = new DragonTreeMapStorage();
++            Storage<Dragon,Integer> storage = new DragonTreeMapStorage();
+             CommandExecutor commandExecutor = new CommandExecutor(new HelpCommand(),
+                     new InfoCommand(), new ShowCommand(), new InsertCommand(),
+                     new UpdateCommand(), new RemoveKeyCommand(), new ClearCommand(),
+@@ -41,6 +45,7 @@
+             requestThread.start();
+             consoleThread.start();
+         } catch (IOException e) {
++            System.out.println("we are dead");
+             System.out.println(e.getMessage());
+         }
+ 
+Index: server/src/main/java/ru/itmo/lab/RequestThread.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab;\n\n\nimport ru.itmo.lab.repository.Storage;\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.request.Request;\nimport ru.itmo.lab.service.handlers.CommandExecutor;\nimport ru.itmo.lab.service.handlers.SocketWorker;\n\nimport javax.xml.transform.Result;\nimport java.io.IOException;\n\npublic class RequestThread extends Thread {\n    private final SocketWorker socketWorker;\n    private final Storage storage;\n    private final CommandExecutor commandExecutor;\n\n    public RequestThread(SocketWorker socketWorker, CommandExecutor commandExecutor, Storage storage) {\n        this.socketWorker = socketWorker;\n        this.storage = storage;\n        this.commandExecutor = commandExecutor;\n    }\n\n    @Override\n    public void run() {\n        while (true) {\n            try {\n                Request acceptedRequest = socketWorker.receiveRequest();\n                CommandResult result = commandExecutor.executeClientCommand(storage, acceptedRequest);\n                socketWorker.sendResult(result);\n            } catch (IOException e) {\n                System.out.println(\"During processing a request from a client\");\n            } catch (ClassNotFoundException e) {\n                System.out.println(\"Invalid request from the client\");\n            }\n        }\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/RequestThread.java b/server/src/main/java/ru/itmo/lab/RequestThread.java
+--- a/server/src/main/java/ru/itmo/lab/RequestThread.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/RequestThread.java	(date 1656143804147)
+@@ -4,6 +4,7 @@
+ import ru.itmo.lab.repository.Storage;
+ import ru.itmo.lab.repository.commandresult.CommandResult;
+ import ru.itmo.lab.request.Request;
++import ru.itmo.lab.service.OutputMessage;
+ import ru.itmo.lab.service.handlers.CommandExecutor;
+ import ru.itmo.lab.service.handlers.SocketWorker;
+ 
+@@ -26,10 +27,12 @@
+         while (true) {
+             try {
+                 Request acceptedRequest = socketWorker.receiveRequest();
++                System.out.println("Received: " + acceptedRequest);
+                 CommandResult result = commandExecutor.executeClientCommand(storage, acceptedRequest);
+                 socketWorker.sendResult(result);
+             } catch (IOException e) {
+-                System.out.println("During processing a request from a client");
++                e.printStackTrace();
++                OutputMessage.printErrorMessage("During processing a request from a client");
+             } catch (ClassNotFoundException e) {
+                 System.out.println("Invalid request from the client");
+             }
+Index: server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.request.Request;\n\nimport java.io.IOException;\nimport java.net.*;\n\npublic class SocketWorker {\n    private static final int DEFAULT_PORT = 1425;\n    private DatagramSocket datagramSocket;\n    private int port = DEFAULT_PORT;\n    private SocketAddress socketAddress;\n    private InetAddress host;\n\n    private String address = \"localhost\";\n\n    public SocketWorker() {\n        try {\n            host = InetAddress.getByName(address);\n            datagramSocket = new DatagramSocket(port, host);\n        } catch (UnknownHostException | SocketException e) {\n            OutputMessage.printErrorMessage(e.getMessage());\n        }\n    }\n\n    public Request receiveRequest() throws IOException, ClassNotFoundException {\n        int receivedSize = datagramSocket.getReceiveBufferSize();\n        byte[] byteArray = new byte[receivedSize];\n        DatagramPacket dpToReceive = new DatagramPacket(byteArray, byteArray.length);\n        datagramSocket.receive(dpToReceive);\n        socketAddress = dpToReceive.getSocketAddress();\n        byteArray = dpToReceive.getData();\n        return Deserializer.deSerializeRequest(byteArray);\n    }\n\n    public void sendResult(CommandResult result) throws IOException {\n        byte[] bufferToSend = Serializer.serializeResult(result);\n        DatagramPacket datagramPacket = new DatagramPacket(bufferToSend, bufferToSend.length, socketAddress);\n        datagramSocket.send(datagramPacket);\n    }\n\n    public int getPort() {\n        return port;\n    }\n\n    public String getAddress() {\n        return address;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java b/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java
+--- a/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java	(date 1656154075236)
+@@ -32,7 +32,7 @@
+         datagramSocket.receive(dpToReceive);
+         socketAddress = dpToReceive.getSocketAddress();
+         byteArray = dpToReceive.getData();
+-        return Deserializer.deSerializeRequest(byteArray);
++        return Deserializer.deserializeRequest(byteArray);
+     }
+ 
+     public void sendResult(CommandResult result) throws IOException {
+Index: client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.commandresult.CommandResult;\nimport ru.itmo.lab.service.OutputMessage;\n\nimport java.io.IOException;\n\npublic final class ResultReceiver {\n    private ResultReceiver() {\n    }\n\n    public static void receiveResult (socketWorker socketWorker) {\n        try {\n            CommandResult commandResult = null;\n            for (int i = 0; i < 50 && commandResult == null; i++) {\n                OutputMessage.printSuccessfulMessage(\"Waiting for response from server...\");\n                Thread.sleep(100);\n                commandResult = socketWorker.receiveResult();\n            }\n            if (commandResult == null) {\n                OutputMessage.printErrorMessage(\"I'm tired!\");\n                return;\n            }\n            commandResult.showCommandResult();\n        } catch (IOException e) {\n            OutputMessage.printErrorMessage(\"Occurred while receiving response from server \");\n        } catch (ClassNotFoundException e) {\n            OutputMessage.printErrorMessage(\"Incorrect response from server\");\n        } catch (InterruptedException e) {\n            OutputMessage.printErrorMessage(\"Interruption request during tread sleeping\");\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java b/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java	(date 1656074834767)
+@@ -7,9 +7,10 @@
+ 
+ public final class ResultReceiver {
+     private ResultReceiver() {
++
+     }
+ 
+-    public static void receiveResult (socketWorker socketWorker) {
++    public static void receiveResult (SocketWorker socketWorker) {
+         try {
+             CommandResult commandResult = null;
+             for (int i = 0; i < 50 && commandResult == null; i++) {
+Index: client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.service.CommandToSend;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.request.*;\n\nimport java.util.Map;\nimport java.util.TreeMap;\n\npublic class CommandRequestCreator {\n    public static final Map<String, CommandRequest> AVAILABLE_COMMANDS = new TreeMap<>();\n\n    public CommandRequestCreator() {\n        AVAILABLE_COMMANDS.put(\"help\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"info\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"show\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"insert\", new WithIdAndDragonCommandRequest());\n        AVAILABLE_COMMANDS.put(\"update\", new WithIdAndDragonCommandRequest());\n        AVAILABLE_COMMANDS.put(\"remove_key\", new WithIdCommandRequest());\n        AVAILABLE_COMMANDS.put(\"clear\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"exit\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"remove_lower\", new WithDragonCommandRequest());\n        AVAILABLE_COMMANDS.put(\"history\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"remove_lower_key\", new WithIdCommandRequest());\n        AVAILABLE_COMMANDS.put(\"min_by_age\", new WithoutArgsCommandRequest());\n        AVAILABLE_COMMANDS.put(\"filter_grater_than_type\", new WithTypeCommandRequest());\n        AVAILABLE_COMMANDS.put(\"print_field_descending_age\", new WithoutArgsCommandRequest());\n    }\n\n    public Request createCommandRequest(String line, CommandToSend commandToSend) {\n\n        Request request = null;\n        if (AVAILABLE_COMMANDS.containsKey(commandToSend.getCommandName())) {\n            request = AVAILABLE_COMMANDS.get(commandToSend.getCommandName()).createRequest(commandToSend);\n        } else {\n            OutputMessage.printErrorMessage(\"\\nThere is no such command, for reference, enter command \\\"help\\\" \");\n        }\n        return request;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java	(date 1656144068759)
+@@ -27,7 +27,7 @@
+         AVAILABLE_COMMANDS.put("print_field_descending_age", new WithoutArgsCommandRequest());
+     }
+ 
+-    public Request createCommandRequest(String line, CommandToSend commandToSend) {
++    public Request createCommandRequest(CommandToSend commandToSend) {
+ 
+         Request request = null;
+         if (AVAILABLE_COMMANDS.containsKey(commandToSend.getCommandName())) {
+Index: client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\npublic class CommandRequestReceiver {\n    public static void receiveCommandRequest(socketWorker socketWorker) {\n        ResultReceiver.receiveResult(socketWorker);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java	(date 1656073388386)
+@@ -1,7 +1,7 @@
+ package ru.itmo.lab.service.handlers;
+ 
+ public class CommandRequestReceiver {
+-    public static void receiveCommandRequest(socketWorker socketWorker) {
++    public static void receiveCommandRequest(SocketWorker socketWorker) {
+         ResultReceiver.receiveResult(socketWorker);
+     }
+ }
+Index: client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.request.Request;\n\nimport java.io.IOException;\n\npublic class CommandRequestSender {\n    public static void sendCommandRequest(Request request, socketWorker socketWorker)\n            throws IOException {\n        request.setClientInfo(socketWorker.getAddress() + socketWorker.getPort());\n        socketWorker.sendRequest(request);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java	(date 1656073388367)
+@@ -5,7 +5,7 @@
+ import java.io.IOException;
+ 
+ public class CommandRequestSender {
+-    public static void sendCommandRequest(Request request, socketWorker socketWorker)
++    public static void sendCommandRequest(Request request, SocketWorker socketWorker)
+             throws IOException {
+         request.setClientInfo(socketWorker.getAddress() + socketWorker.getPort());
+         socketWorker.sendRequest(request);
+Index: client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.repository.ConsoleWorker;\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.service.CommandToSend;\n\nimport java.io.IOException;\nimport java.util.HashSet;\n\npublic class ScriptWorker {\n    private static HashSet<String> previousFiles = new HashSet<>();\n\n    private ScriptWorker() {\n\n    }\n\n    public static void startWorkWithScript(CommandToSend commandToSend,\n                                           socketWorker socketWorker) {\n        try {\n            DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 0);\n            String file = commandToSend.getCommandArgs()[0];\n            FileChecker.checkFile(file);\n            if (previousFiles.contains(file)) {\n                throw new IllegalArgumentException(\"Possible looping\");\n            }\n            previousFiles.add(file);\n\n            ConsoleWorker.getConsoleWorker().setExecutedScript(true);\n            ScriptReader scriptReader = new ScriptReader(socketWorker);\n            scriptReader.readFromScript(file);\n            previousFiles.remove(file);\n            ConsoleWorker.getConsoleWorker().setExecutedScript(false);\n\n            OutputMessage.printSuccessfulMessage(\"Script \\\"\" +  file + \"\\\" has been executed\");\n        } catch (IOException e) {\n            OutputMessage.printErrorMessage(e.getMessage());\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java b/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java	(date 1656074834662)
+@@ -8,14 +8,14 @@
+ import java.util.HashSet;
+ 
+ public class ScriptWorker {
+-    private static HashSet<String> previousFiles = new HashSet<>();
++    private static final HashSet<String> previousFiles = new HashSet<>();
+ 
+     private ScriptWorker() {
+ 
+     }
+ 
+     public static void startWorkWithScript(CommandToSend commandToSend,
+-                                           socketWorker socketWorker) {
++                                           SocketWorker socketWorker) {
+         try {
+             DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 0);
+             String file = commandToSend.getCommandArgs()[0];
+Index: client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\nimport ru.itmo.lab.service.OutputMessage;\n\nimport java.io.IOException;\nimport java.util.NoSuchElementException;\nimport java.util.Scanner;\n\npublic class ConsoleReader {\n    socketWorker socketWorker;\n\n    public ConsoleReader(socketWorker socketWorker) {\n        this.socketWorker = socketWorker;\n    }\n\n    public void readFromConsole() throws IOException {\n        while(true) {\n            Scanner scanner = new Scanner(System.in);\n\n            while(true) {\n                try {\n                    System.out.println(\"\\nEnter command, please\");\n                    String line = scanner.nextLine();\n                    CommandRequestWorker.superpupermethod(line, socketWorker);\n                } catch(NoSuchElementException e) {\n                    OutputMessage.printErrorMessage(\"\\nInvalid character entered\");\n                    System.exit(0);\n                }\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java b/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java	(date 1656078832468)
+@@ -1,4 +1,5 @@
+ package ru.itmo.lab.service.handlers;
++import ru.itmo.lab.repository.ConsoleWorker;
+ import ru.itmo.lab.service.OutputMessage;
+ 
+ import java.io.IOException;
+@@ -6,17 +7,17 @@
+ import java.util.Scanner;
+ 
+ public class ConsoleReader {
+-    socketWorker socketWorker;
++    SocketWorker socketWorker;
+ 
+-    public ConsoleReader(socketWorker socketWorker) {
++    public ConsoleReader(SocketWorker socketWorker) {
+         this.socketWorker = socketWorker;
+     }
+ 
+     public void readFromConsole() throws IOException {
+-        while(true) {
++        while  (true) {
+             Scanner scanner = new Scanner(System.in);
+-
+-            while(true) {
++            ConsoleWorker.getConsoleWorker().setScanner(scanner);
++            while (true) {
+                 try {
+                     System.out.println("\nEnter command, please");
+                     String line = scanner.nextLine();
+Index: client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.service.handlers;\n\nimport ru.itmo.lab.service.OutputMessage;\nimport ru.itmo.lab.request.Request;\nimport ru.itmo.lab.service.CommandToSend;\n\nimport java.io.IOException;\n\npublic class CommandRequestWorker {\n    private final static CommandRequestCreator requestCreator = new CommandRequestCreator();\n\n    public static void superpupermethod(String line, socketWorker socketWorker) throws IOException {\n        CommandToSend commandToSend = CommandToSendCreator.createCommandToSend(line);\n        try {\n            if (\"execute_script\".equals(commandToSend.getCommandName())) {\n                ScriptWorker.startWorkWithScript(commandToSend, socketWorker);\n            } else {\n                Request request = requestCreator.createCommandRequest(line, commandToSend);\n\n                if (request != null) {\n                    CommandRequestSender.sendCommandRequest(request, socketWorker);\n\n                    CommandRequestReceiver.receiveCommandRequest(socketWorker);\n                }\n            }\n        } catch (IllegalArgumentException e) {\n            OutputMessage.printErrorMessage(e.getMessage());\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java
+--- a/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java	(date 1656144068755)
+@@ -9,13 +9,13 @@
+ public class CommandRequestWorker {
+     private final static CommandRequestCreator requestCreator = new CommandRequestCreator();
+ 
+-    public static void superpupermethod(String line, socketWorker socketWorker) throws IOException {
++    public static void superpupermethod(String line, SocketWorker socketWorker) throws IOException {
+         CommandToSend commandToSend = CommandToSendCreator.createCommandToSend(line);
+         try {
+             if ("execute_script".equals(commandToSend.getCommandName())) {
+                 ScriptWorker.startWorkWithScript(commandToSend, socketWorker);
+             } else {
+-                Request request = requestCreator.createCommandRequest(line, commandToSend);
++                Request request = requestCreator.createCommandRequest(commandToSend);
+ 
+                 if (request != null) {
+                     CommandRequestSender.sendCommandRequest(request, socketWorker);
+Index: client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.request;\n\nimport ru.itmo.lab.repository.ConsoleWorker;\nimport ru.itmo.lab.service.factories.ScriptDragonFactory;\nimport ru.itmo.lab.service.CommandToSend;\nimport ru.itmo.lab.service.factories.ConsoleDragonFactory;\nimport ru.itmo.lab.service.handlers.DragonValidator;\n\npublic class WithIdAndDragonCommandRequest implements CommandRequest {\n    public WithIdAndDragonCommandRequest() {\n    }\n\n    @Override\n    public Request createRequest(CommandToSend commandToSend) {\n        DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);\n\n        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0],null);\n        dragonValidator.validateNull(false);\n        dragonValidator.validateFunction(Integer::parseInt, \"value of id must be an integer\");\n        Integer id = dragonValidator.getValue();\n\n        if(ConsoleWorker.getConsoleWorker().isExecutedScript()) {\n            ScriptDragonFactory scriptDragonFactory =\n                    new ScriptDragonFactory(ConsoleWorker.getConsoleWorker().getScanner());\n            scriptDragonFactory.generateDragonData();\n            return new RequestBuilder()\n                    .withName(commandToSend.getCommandName())\n                    .withIntegerArgument(id)\n                    .withDragonArgument(scriptDragonFactory.getDragon())\n                    .build();\n        } else {\n            ConsoleDragonFactory consoleDragonFactory = new ConsoleDragonFactory();\n            consoleDragonFactory.generateDragonData();\n            return new RequestBuilder()\n                    .withName(commandToSend.getCommandName())\n                    .withIntegerArgument(id)\n                    .withDragonArgument(consoleDragonFactory.getDragon())\n                    .build();\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java b/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java
+--- a/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java	(date 1656154075241)
+@@ -14,7 +14,7 @@
+     public Request createRequest(CommandToSend commandToSend) {
+         DragonValidator.validateNumberOfArgs(commandToSend.getCommandArgs(), 1);
+ 
+-        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0],null);
++        DragonValidator<Integer> dragonValidator = new DragonValidator<>(commandToSend.getCommandArgs()[0]);
+         dragonValidator.validateNull(false);
+         dragonValidator.validateFunction(Integer::parseInt, "value of id must be an integer");
+         Integer id = dragonValidator.getValue();
+Index: common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.itmo.lab.repository.commandresult;\n\npublic enum CommandStatus {\n    SUCCESSFUL,\n    UNSUCCESSFUL;\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java b/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java
+--- a/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java	(revision 93d9e5e9d464bf05b303e75df27e50d442b2639a)
++++ b/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java	(date 1656075641182)
+@@ -3,5 +3,4 @@
+ public enum CommandStatus {
+     SUCCESSFUL,
+     UNSUCCESSFUL;
+-
+ }
+\ No newline at end of file

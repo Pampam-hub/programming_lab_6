@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f84d3894-8e6d-48fe-8c86-2b197b6feeb3" name="Changes" comment="ending with Client and Server">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdAndDragonCommandRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithIdCommandRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/request/WithTypeCommandRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/factories/ConsoleDragonFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/CommandRequestWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ConsoleReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ResultReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ScriptReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/ScriptWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonHead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/entity/DragonType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/repository/commandresult/CommandStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/Deserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab/service/handlers/DragonValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/RequestThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/RequestThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/repository/exceptions/EntityNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/CommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab/service/handlers/SocketWorker.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/client">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/server">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="client" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="client" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="client" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="server" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="server" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lab_6" type="f1a62948:ProjectNode" />
+                <item name="server" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Asaq19eytzddhR1d7k7KLl41Wv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.itmo.lab" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/main/java/ru/itmo/lab" />
+      <recent name="$PROJECT_DIR$/common/src/main/java/ru/itmo/lab" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.itmo.lab.service.handlers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ru.itmo.lab.Client">
+    <configuration name="ru.itmo.lab.Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.itmo.lab.Client" />
+      <module name="lab_6.client.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.itmo.lab.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ru.itmo.lab.Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DATA_FILEPATH" value="DataFile.xml" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ru.itmo.lab.Server" />
+      <module name="lab_6.server.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.itmo.lab.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="programming_lab_6:client [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/client" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="programming_lab_6:client [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/client" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="programming_lab_6:server [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.ru.itmo.lab.Client" />
+      <item itemvalue="Application.ru.itmo.lab.Server" />
+      <item itemvalue="Gradle.programming_lab_6:client [build]" />
+      <item itemvalue="Gradle.programming_lab_6:client [jar]" />
+      <item itemvalue="Gradle.programming_lab_6:server [jar]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.programming_lab_6:client [build]" />
+        <item itemvalue="Gradle.programming_lab_6:server [jar]" />
+        <item itemvalue="Application.ru.itmo.lab.Server" />
+        <item itemvalue="Gradle.programming_lab_6:client [jar]" />
+        <item itemvalue="Application.ru.itmo.lab.Client" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f84d3894-8e6d-48fe-8c86-2b197b6feeb3" name="Changes" comment="" />
+      <created>1655800938788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655800938788</updated>
+      <workItem from="1655800947961" duration="7175000" />
+      <workItem from="1655822575498" duration="34052000" />
+      <workItem from="1655916457574" duration="6350000" />
+      <workItem from="1655923852314" duration="21372000" />
+      <workItem from="1655998968447" duration="766000" />
+      <workItem from="1655999918088" duration="12362000" />
+      <workItem from="1656050169390" duration="53000" />
+      <workItem from="1656072235364" duration="6672000" />
+      <workItem from="1656079116979" duration="52000" />
+      <workItem from="1656079249789" duration="3585000" />
+      <workItem from="1656144264524" duration="5244000" />
+      <workItem from="1656153910287" duration="862000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ending with Client and Server" />
+    <option name="LAST_COMMIT_MESSAGE" value="ending with Client and Server" />
+  </component>
+</project>
